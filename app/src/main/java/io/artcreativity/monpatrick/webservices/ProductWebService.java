@@ -58,9 +58,8 @@ public class ProductWebService {
 
     public Product delete(Product product) {
         Request request = new Request.Builder().url(baseUrl).delete().build();
-
         try (Response response = httpClient.newCall(request).execute()) {
-            return response.body().string();
+            return gson.fromJson(response.body().string(),(Type) Product.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
