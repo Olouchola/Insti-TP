@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "88736383231",
+    "project_id": "daminsti-87bb9",
+    "storage_bucket": "daminsti-87bb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88736383231:android:87464715d01cc277e50cca",
+        "android_client_info": {
+          "package_name": "io.artcreativity.monpatrick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88736383231-8ego9rv5o7jj37g02ld2sp2qbicf2mfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTgLwVFfn-D0nCdyV8pLwetjudFcMCQ7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88736383231-8ego9rv5o7jj37g02ld2sp2qbicf2mfa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
