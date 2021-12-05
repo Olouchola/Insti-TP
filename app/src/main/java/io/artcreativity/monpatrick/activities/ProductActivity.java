@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.artcreativity.monpatrick.webservices.ProductWebService;
 import io.artcreativity.monpremierprojet.R;
 import io.artcreativity.monpatrick.adapters.ProductAdapter;
 import io.artcreativity.monpatrick.dao.DataBaseRoom;
@@ -181,6 +182,10 @@ public class ProductActivity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
+
+                                ProductWebService productWebService=new ProductWebService();
+                                Product product1=productWebService.deleteProduct(product);
+                                System.out.println("save :: " + product1);
                                 productRoomDao.delete(product);
                                 runOnUiThread(()->{
                                     products.remove(products.indexOf(product));

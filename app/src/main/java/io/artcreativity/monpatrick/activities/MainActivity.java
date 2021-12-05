@@ -85,46 +85,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.e(TAG, "saveProduct: " + product);
             Toast.makeText(getApplicationContext(), "J'ai clique", Toast.LENGTH_SHORT).show();
 
-            new Thread(
-                    ()->{
-                        ProductWebService productWebService=new ProductWebService();
-                        Product save=productWebService.createProduct(product);
-//                    System.out.println(save);
-                        System.out.println("save :: " + save);
-                        runOnUiThread(()->{
-//                        Intent intent = getIntent();
-//                        intent.putExtra("MY_PROD", save);
-//                        setResult(Activity.RESULT_OK, intent);
-//                        finish();
-                        });
-                    }
-            ).start();
+//            new Thread(
+//                    ()->{
+//                        ProductWebService productWebService=new ProductWebService();
+//                        Product save=productWebService.createProduct(product);
+////                    System.out.println(save);
+//                        System.out.println("save :: " + save);
+//                        runOnUiThread(()->{
+////                        Intent intent = getIntent();
+////                        intent.putExtra("MY_PROD", save);
+////                        setResult(Activity.RESULT_OK, intent);
+////                        finish();
+//                        });
+//                    }
+//            ).start();
 
             if (value==EDIT_PRODUCT){
                 product.id=id;
+                product.serverId=id;
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        ProductWebService productWebService=new ProductWebService();
+                        Product save=productWebService.updateProduct(product);
+                        System.out.println("save :: " + save);
                         productRoomDao.update(product);
+                        runOnUiThread(()->{
+                            Intent intent = getIntent();
+                            intent.putExtra("MY_PROD_UPDATE",save);
+                            setResult(Activity.RESULT_OK, intent);
+                            finish();
+                        });
                     }
                 }).start();
-                Intent intent = getIntent();
-                intent.putExtra("MY_PROD_UPDATE",product);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+
 
             }
             if (value==INSERT_PRODUCT){
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        ProductWebService productWebService=new ProductWebService();
+                        Product save=productWebService.createProduct(product);
+                        System.out.println("save :: " + save);
                         productRoomDao.insert(product);
+                        runOnUiThread(()->{
+                            Intent intent = getIntent();
+                            intent.putExtra("MY_PROD", product);
+                            setResult(Activity.RESULT_OK, intent);
+                            finish();
+                        });
                     }
                 }).start();
-                Intent intent = getIntent();
-                intent.putExtra("MY_PROD", product);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+
 
             }
         }
